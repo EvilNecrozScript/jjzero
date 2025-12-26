@@ -118,7 +118,7 @@ end
 -- Punch Loop
 task.spawn(function()
     while true do
-        task.wait(1) -- jede Sekunde
+        task.wait(0.2) -- jede Sekunde
         if ENABLED_PUNCH then
             punchNPCs()
         end
