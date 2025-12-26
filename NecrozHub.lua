@@ -81,13 +81,13 @@ end)
 -- Funktion Punch ausführen
 local function punchNPCs()
     -- Spieler im Server-Workspace
-    local localCharModel = workspace.Characters.Server.Players:FindFirstChild(player.Name.."_Server") 
-        or workspace.Characters.Server.Players:GetChildren()[1] -- Fallback
-
+    local playerFolder = workspace.Characters.Server.Players
+    local playerList = playerFolder:GetChildren()
+    local player1 = playerList[1]
     -- Skill
     local args = {
         [1] = "Punch",
-        [2] = localCharModel,
+        [2] = player1,
         [3] = Vector3.new(-520.218017578125, 84.97281646728516, 1778.3367919921875),
         [4] = 1,
         [5] = 1
@@ -106,8 +106,8 @@ local function punchNPCs()
             ["CanParry"] = true,
             ["OnCharacterHit"] = function() end,
             ["Origin"] = CFrame.new(-520.218017578125, 84.98957824707031, 1778.3367919921875) * CFrame.Angles(-0, 1.3115626573562622, -0),
-            ["LocalCharacter"] = localCharModel,
-            ["WindowID"] = localCharModel.Name.."_Punch",
+            ["LocalCharacter"] = player1,
+            ["WindowID"] = player1.Name.."_Punch",
             ["Parries"] = {},
             ["SkillID"] = "Punch"
         }
@@ -141,10 +141,10 @@ end)
 togglePunchBtn.MouseButton1Click:Connect(function()
     ENABLED_PUNCH = not ENABLED_PUNCH
     if ENABLED_PUNCH then
-        togglePunchBtn.Text = "PUNCH ON"
+        togglePunchBtn.Text = "BOSS ON"
         togglePunchBtn.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
     else
-        togglePunchBtn.Text = "PUNCH OFF"
+        togglePunchBtn.Text = "BOSS OFF"
         togglePunchBtn.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
     end
 end)
